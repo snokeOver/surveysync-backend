@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import allRoutes from "./routes/allRoutes.js";
 
