@@ -10,10 +10,19 @@ export const createUser = async (req, res, next) => {
   };
 
   try {
-    const user = new UserModel(userToSave);
-    const savedUser = await user.save();
+    // Check if user already exists
+    const existingUser = await UserModel.findOne({
+      $or: [{ userId: userToSave.userId }, { email: userToSave.email }],
+    });
+
+    // Save new user
+    if (!existingUser) {
+      const user = new UserModel(userToSave);
+      const savedUser = await user.save();
+    }
+
     res.status(200).send({
-      Message: "Create User Success!",
+      message: "User created successfully!",
     });
   } catch (err) {
     errorHandler(err, res);
