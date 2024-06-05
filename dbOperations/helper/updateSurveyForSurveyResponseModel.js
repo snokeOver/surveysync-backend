@@ -5,7 +5,8 @@ export const updateSurveyForSurveyResponseModel = async (
   userId,
   fieldName,
   currentData,
-  dynamicField
+  dynamicField,
+  payloadData
 ) => {
   let newData;
 
@@ -21,6 +22,11 @@ export const updateSurveyForSurveyResponseModel = async (
     newData = currentData === "LIKE" ? "" : "LIKE";
   } else if (fieldName === "disLikeCount") {
     newData = currentData === "DISLIKE" ? "" : "DISLIKE";
+  }
+
+  // Logic for comment
+  if (fieldName === "commentCount") {
+    newData = payloadData;
   }
 
   // Update the querray based on the newData and dynamicField

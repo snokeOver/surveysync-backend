@@ -46,6 +46,12 @@ export const updateASurveyResponse = async (req, res, next) => {
       }
     }
 
+    // update for comment
+    if (req.body.comment) {
+      // parameters are: fieldName of surveySchema, surveyID of surveyResponseSchema, Response from API
+      await updateBothSurveyModel("commentCount", targetId.valueOf(), req);
+    }
+
     res.status(200).send({
       message: "Survey updated successfully!",
     });

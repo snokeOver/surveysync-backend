@@ -10,6 +10,9 @@ import { updateASurvey } from "../dbOperations/updateASurvey.js";
 import { getRecentSurveys } from "../dbOperations/getRecentSurveys.js";
 import { getASurveyDetails } from "../dbOperations/getASurveyDetails.js";
 import { updateASurveyResponse } from "../dbOperations/updateASurveyResponse.js";
+import { getASurveyResponseDetails } from "../dbOperations/getASurveyResponseDetails.js";
+import { getUserRole } from "../dbOperations/getUserRole.js";
+import { getATotalSurveyResponse } from "../dbOperations/getATotalSurveyResponse.js";
 // import { updateExistingDoc } from "../dbOperations/updateExistingDoc.js";
 
 // Initiate router
@@ -26,10 +29,16 @@ router.get("/surveys/:sid", getSurveyorsSurveys);
 router.get("/recent-surveys", getRecentSurveys);
 
 // Get a  survey response based on the id
-router.get("/survey-response/:id", getSurveyorsSurveys);
+router.get("/survey-response/:id", getATotalSurveyResponse);
 
-// Get a  survey based on the id
+// Get a survey details from surveyModel based on the id
 router.get("/single-survey/:id", getASurveyDetails);
+
+// Get a  survey details from surveyResponseModel based on the id
+router.get("/user-survey-response/:id", getASurveyResponseDetails);
+
+// Get a  user role
+router.get("/user-role/:id", getUserRole);
 
 // ------Danger---- Update field in existing database
 // router.get("/update", updateExistingDoc);

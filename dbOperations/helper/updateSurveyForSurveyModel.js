@@ -3,11 +3,12 @@ import SurveyModel from "../../shcemas/surveySchema.js";
 export const updateSurveyForSurveyModel = async (
   surveyId,
   fieldName,
-  currentData
+  currentData,
+  payloadData
 ) => {
   let newData = {};
 
-  // Logic for vote (YES?NO)
+  // Logic for vote (YES/NO)
   if (fieldName === "yesCount") {
     if (currentData === "YES") {
       // User already voted YES, decrease yesCount
@@ -54,6 +55,17 @@ export const updateSurveyForSurveyModel = async (
     } else {
       // User has not voted, increase disLikeCount
       newData = { $inc: { disLikeCount: 1 } };
+    }
+  }
+
+  // Logic for comment
+  if (fieldName === "commentCount") {
+    if (currentData === null && payloadData !== null) {
+      // User didn't comment on this survey yet
+      newData = { $inc: { commentCount: 1 } };
+    } else if (payloadData === null) {
+      // User wants to delete his/her comment
+      newData = { $inc: { commentCount: -1 } };
     }
   }
 

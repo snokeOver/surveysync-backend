@@ -39,7 +39,7 @@ export const updateBothSurveyModel = async (fieldName, targetId, req) => {
       { $push: { userResponses: userInfoForUpdate } },
       { new: true } // This ensures the updated document is returned
     );
-    console.log(newResponse);
+    // console.log(newResponse);
 
     // Update SurveyModel Part
     const survey = await SurveyModel.findByIdAndUpdate(
@@ -49,23 +49,29 @@ export const updateBothSurveyModel = async (fieldName, targetId, req) => {
     );
   } else {
     // update operation on array of surveyResponseModel
-    // parameters are: surveyID of surveyResponseSchema, Id of current user, fieldName of surveySchema, currentData of the user from surveyResponseSchema array, dynamic field to update at surveyResponseSchema
+
+    const payloadData = vote || preference || comment || "";
+
+    // parameters are: surveyID of surveyResponseSchema, Id of current user, fieldName of surveySchema, currentData of the user from surveyResponseSchema array, dynamic field to update at surveyResponseSchema, the data(comment) to be saved
     const updatedSurveyResponseModel = await updateSurveyForSurveyResponseModel(
       targetId,
       userId,
       fieldName,
       surveyResponse[dynamicFieldToUpdate],
-      dynamicFieldToUpdate
+      dynamicFieldToUpdate,
+      payloadData
     );
 
-    console.log(updatedSurveyResponseModel);
+    // console.log(updatedSurveyResponseModel);
 
     // update operation on data from surveyModel
-    // parameters are: surveyID of surveySchema, fieldName of surveySchema, currentData of the user from surveyResponseSchema array, dynamic field to update at surveyResponseSchema
+
+    // parameters are: surveyID of surveySchema, fieldName of surveySchema, currentData of the user from surveyResponseSchema array, dynamic field to update at surveyResponseSchema, the data(comment) to be saved
     const updatedSurveyModel = await updateSurveyForSurveyModel(
       req.params.id,
       fieldName,
-      surveyResponse[dynamicFieldToUpdate]
+      surveyResponse[dynamicFieldToUpdate],
+      payloadData
     );
   }
 };
