@@ -1,5 +1,5 @@
 import SurveyModel from "../shcemas/surveySchema.js";
-import errorHandler from "./errorHandler.js";
+import errorHandler from "./helper/errorHandler.js";
 
 export const updateASurvey = async (req, res, next) => {
   const { title, description, deadline, category } = req.body;
@@ -10,7 +10,6 @@ export const updateASurvey = async (req, res, next) => {
     ...(category && { category }),
     updatedAt: Date.now(),
   };
-
   try {
     const survey = await SurveyModel.findByIdAndUpdate(
       req.params.id,

@@ -1,5 +1,5 @@
 import UserModel from "../shcemas/userSchema.js";
-import errorHandler from "./errorHandler.js";
+import errorHandler from "./helper/errorHandler.js";
 
 export const createUser = async (req, res, next) => {
   const userToSave = {

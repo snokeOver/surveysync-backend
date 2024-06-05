@@ -1,4 +1,4 @@
-import errorHandler from "./errorHandler.js";
+import errorHandler from "../helper/errorHandler.js";
 import jwt from "jsonwebtoken";
 
 export const createToken = async (req, res) => {

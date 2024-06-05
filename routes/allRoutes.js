@@ -1,20 +1,21 @@
 import express from "express";
-import { test } from "../dbOperations/test.js";
+import { test } from "../dbOperations/helper/test.js";
 import { createUser } from "../dbOperations/createUser.js";
 import { checkEamilExist } from "../dbOperations/checkEmailExists.js";
-import { createToken } from "../dbOperations/createToken.js";
+import { createToken } from "../dbOperations/authentication/createToken.js";
 import { createSurvey } from "../dbOperations/createASurvey.js";
 import { getSurveyorsSurveys } from "../dbOperations/getSurveyorSurveys.js";
 import { deleteASurvey } from "../dbOperations/deleteSurvey.js";
 import { updateASurvey } from "../dbOperations/updateASurvey.js";
 import { getRecentSurveys } from "../dbOperations/getRecentSurveys.js";
 import { getASurveyDetails } from "../dbOperations/getASurveyDetails.js";
+import { updateASurveyResponse } from "../dbOperations/updateASurveyResponse.js";
 // import { updateExistingDoc } from "../dbOperations/updateExistingDoc.js";
 
 // Initiate router
 const router = express.Router();
 
-// --------------------  Get operations--------------------
+// --------------------  Get operations-----------------------------//
 //API test
 router.get("/test", test);
 
@@ -33,7 +34,7 @@ router.get("/single-survey/:id", getASurveyDetails);
 // ------Danger---- Update field in existing database
 // router.get("/update", updateExistingDoc);
 
-// --------------------  Post Operations ----------------------------
+// --------------------  Post Operations ----------------------------//
 //Check if the Email is already in the DB or not
 router.post("/check-email", checkEamilExist);
 
@@ -46,12 +47,15 @@ router.post("/jwt", createToken);
 // Create a survey
 router.post("/create-survey", createSurvey);
 
-// --------------------  Delete Operations--------------------
+// --------------------  Delete Operations-------------------------//
 // Delete a specific survey data by id requested by surveyor
 router.delete("/survey/:id", deleteASurvey);
 
-// --------------------  Update(patch) Operations--------------------
+// --------------------  Update(patch) Operations-------------------//
 // Update a specific survey data by id requested by surveyor
 router.patch("/survey/:id", updateASurvey);
+
+// Update a specific survey response data
+router.patch("/survey-response/:id", updateASurveyResponse);
 
 export default router;
