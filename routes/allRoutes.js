@@ -13,6 +13,10 @@ import { updateASurveyResponse } from "../dbOperations/updateASurveyResponse.js"
 import { getASurveyResponseDetails } from "../dbOperations/getASurveyResponseDetails.js";
 import { getUserRole } from "../dbOperations/getUserRole.js";
 import { getATotalSurveyResponse } from "../dbOperations/getATotalSurveyResponse.js";
+import { getAllUsers } from "../dbOperations/getAllUsers.js";
+import { updateAUserRole } from "../dbOperations/updateAUserRole.js";
+import { getAllSurveys } from "../dbOperations/getAllSurveys.js";
+import { updateASurveyStatus } from "../dbOperations/updateASurveyStatus.js";
 // import { updateExistingDoc } from "../dbOperations/updateExistingDoc.js";
 
 // Initiate router
@@ -40,6 +44,12 @@ router.get("/user-survey-response/:id", getASurveyResponseDetails);
 // Get a  user role
 router.get("/user-role/:id", getUserRole);
 
+// Get all users
+router.get("/all-users", getAllUsers);
+
+// Get all Surveys
+router.get("/all-surveys", getAllSurveys);
+
 // ------Danger---- Update field in existing database
 // router.get("/update", updateExistingDoc);
 
@@ -63,6 +73,12 @@ router.delete("/survey/:id", deleteASurvey);
 // --------------------  Update(patch) Operations-------------------//
 // Update a specific survey data by id requested by surveyor
 router.patch("/survey/:id", updateASurvey);
+
+// Update a specific user role
+router.patch("/update-user-role/:id", updateAUserRole);
+
+// Update a specific survey Status
+router.patch("/update-survey-status/:id", updateASurveyStatus);
 
 // Update a specific survey response data
 router.patch("/survey-response/:id", updateASurveyResponse);
