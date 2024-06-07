@@ -18,6 +18,8 @@ import { updateAUserRole } from "../dbOperations/updateAUserRole.js";
 import { getAllSurveys } from "../dbOperations/getAllSurveys.js";
 import { updateASurveyStatus } from "../dbOperations/updateASurveyStatus.js";
 import { getAdminFeedbacks } from "../dbOperations/getAdminFeedbacks.js";
+import { getUsersParticipatedResponses } from "../dbOperations/getUsersParticipatedResponses.js";
+import { getUsersReportedSurveys } from "../dbOperations/getUsersReportedSurveys.js";
 
 // import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
@@ -34,8 +36,14 @@ router.get("/surveyor-surveys/:sid", getSurveyorsSurveys);
 // Get 6 recently published surveys
 router.get("/recent-surveys", getRecentSurveys);
 
-// Get a  survey response based on the id
+// Get a  survey response based on the surveyId
 router.get("/survey-response/:uid", getATotalSurveyResponse);
+
+// Get a  survey response based on the userId
+router.get("/participated-surveys/:uid", getUsersParticipatedResponses);
+
+// Get a  surveys I reported
+router.get("/reported-surveys/:uid", getUsersReportedSurveys);
 
 // Get a survey details from surveyModel based on the id
 router.get("/single-survey", getASurveyDetails);
