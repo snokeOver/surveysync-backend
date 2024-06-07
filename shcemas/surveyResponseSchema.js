@@ -6,12 +6,17 @@ const userResponseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // Consider to populate from userId
     name: {
       type: String,
     },
     email: {
       type: String,
       lowercase: true,
+    },
+    reportStatus: {
+      type: String,
+      enum: ["Reported", "NotReported"],
     },
     vote: {
       type: String,

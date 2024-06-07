@@ -1,9 +1,9 @@
-import SurveyModel from "../shcemas/surveySchema.js";
+import SurveyModel from "../../shcemas/surveySchema.js";
 import errorHandler from "./errorHandler.js";
 
 export const updateExistingDoc = async (req, res, next) => {
   const newField = {
-    commentCount: 0,
+    reportCount: 0,
   };
 
   try {

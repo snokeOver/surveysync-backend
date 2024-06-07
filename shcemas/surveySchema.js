@@ -47,6 +47,10 @@ const surveySchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  reportCount: {
+    type: Number,
+    default: 0,
+  },
 
   createdAt: {
     type: Date,

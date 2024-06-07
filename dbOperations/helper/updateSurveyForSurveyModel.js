@@ -58,6 +58,17 @@ export const updateSurveyForSurveyModel = async (
     }
   }
 
+  // Logic for Report status
+  if (fieldName === "reportCount") {
+    if (currentData === "Reported") {
+      // User already Reported, decrease reportCount
+      newData = { $inc: { reportCount: -1 } };
+    } else {
+      // User did not Reported, increase reportCount
+      newData = { $inc: { reportCount: 1 } };
+    }
+  }
+
   // Logic for comment
   if (fieldName === "commentCount") {
     if (currentData === null && payloadData !== null) {

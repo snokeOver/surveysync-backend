@@ -8,7 +8,6 @@ export const getASurveyResponseDetails = async (req, res, next) => {
       req.query.dataId,
       req.params.uid
     );
-
     res.status(200).send({
       message: "SurveyDetail retrieved successfully!",
       response,

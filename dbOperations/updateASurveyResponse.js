@@ -46,6 +46,12 @@ export const updateASurveyResponse = async (req, res, next) => {
       }
     }
 
+    // update for Report Status (Reported/NotReported)
+    if (req.body.reportStatus) {
+      // parameters are: fieldName of surveySchema, surveyID of surveyResponseSchema, Response from API
+      await updateBothSurveyModel("reportCount", targetId.valueOf(), req);
+    }
+
     // update for comment
     if (req.body.comment) {
       // parameters are: fieldName of surveySchema, surveyID of surveyResponseSchema, Response from API

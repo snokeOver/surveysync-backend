@@ -18,7 +18,8 @@ import { updateAUserRole } from "../dbOperations/updateAUserRole.js";
 import { getAllSurveys } from "../dbOperations/getAllSurveys.js";
 import { updateASurveyStatus } from "../dbOperations/updateASurveyStatus.js";
 import { getAdminFeedbacks } from "../dbOperations/getAdminFeedbacks.js";
-// import { updateExistingDoc } from "../dbOperations/updateExistingDoc.js";
+
+// import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
 // Initiate router
 const router = express.Router();
@@ -31,13 +32,13 @@ router.get("/test", test);
 router.get("/surveyor-surveys/:sid", getSurveyorsSurveys);
 
 // Get 6 recently published surveys
-router.get("/recent-surveys/:uid", getRecentSurveys);
+router.get("/recent-surveys", getRecentSurveys);
 
 // Get a  survey response based on the id
 router.get("/survey-response/:uid", getATotalSurveyResponse);
 
 // Get a survey details from surveyModel based on the id
-router.get("/single-survey/:uid", getASurveyDetails);
+router.get("/single-survey", getASurveyDetails);
 
 // Get a  survey details from surveyResponseModel based on the id
 router.get("/user-survey-response/:uid", getASurveyResponseDetails);
@@ -54,7 +55,7 @@ router.get("/all-users/:uid", getAllUsers);
 // Get all Surveys
 router.get("/all-surveys/:uid", getAllSurveys);
 
-// ------Danger---- Update field in existing database
+// ------Danger---- Update field in existing database ---------------//
 // router.get("/update", updateExistingDoc);
 
 // --------------------  Post Operations ----------------------------//
@@ -78,13 +79,13 @@ router.delete("/survey/:id", deleteASurvey);
 // Update a specific survey data by id requested by surveyor
 router.patch("/survey/:id", updateASurvey);
 
-// Update a specific user role
+// Update a specific user role on userModel
 router.patch("/update-user-role/:id", updateAUserRole);
 
-// Update a specific survey Status
+// Update a specific survey Status on both SurveyModel and AdminFeedbackModel
 router.patch("/update-survey-status/:id", updateASurveyStatus);
 
-// Update a specific survey response data
+// Update a specific survey response data on both SurveyModel and SurveyResponseModel
 router.patch("/survey-response/:id", updateASurveyResponse);
 
 export default router;

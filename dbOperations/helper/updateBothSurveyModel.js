@@ -5,13 +5,16 @@ import { updateSurveyForSurveyModel } from "./updateSurveyForSurveyModel.js";
 import { updateSurveyForSurveyResponseModel } from "./updateSurveyForSurveyResponseModel.js";
 
 export const updateBothSurveyModel = async (fieldName, targetId, req) => {
-  const { userId, name, email, vote, preference, comment } = req.body;
+  const { userId, name, email, vote, preference, reportStatus, comment } =
+    req.body;
 
   // Determine the dynamic field to update in userInfoForUpdate
   const dynamicFieldToUpdate = vote
     ? "vote"
     : preference
     ? "preference"
+    : reportStatus
+    ? "reportStatus"
     : comment
     ? "comment"
     : null;
@@ -21,6 +24,7 @@ export const updateBothSurveyModel = async (fieldName, targetId, req) => {
     ...(name && { name }),
     ...(email && { email }),
     ...(vote && { vote }),
+    ...(reportStatus && { reportStatus }),
     ...(preference && { preference }),
     ...(comment && { comment }),
     updatedAt: Date.now(),
@@ -44,13 +48,13 @@ export const updateBothSurveyModel = async (fieldName, targetId, req) => {
     // Update SurveyModel Part
     const survey = await SurveyModel.findByIdAndUpdate(
       req.params.id,
-      { $inc: { [fieldName]: 1 } }, // Increment yesCount/noCount by 1
+      { $inc: { [fieldName]: 1 } }, //example: Increment yesCount/noCount by 1
       { new: true }
     );
   } else {
     // update operation on array of surveyResponseModel
 
-    const payloadData = vote || preference || comment || "";
+    const payloadData = vote || preference || comment || reportStatus || "";
 
     // parameters are: surveyID of surveyResponseSchema, Id of current user, fieldName of surveySchema, currentData of the user from surveyResponseSchema array, dynamic field to update at surveyResponseSchema, the data(comment) to be saved
     const updatedSurveyResponseModel = await updateSurveyForSurveyResponseModel(
@@ -64,7 +68,7 @@ export const updateBothSurveyModel = async (fieldName, targetId, req) => {
 
     // console.log(updatedSurveyResponseModel);
 
-    // update operation on data from surveyModel
+    //------- update operation on data from surveyModel ----------------------//
 
     // parameters are: surveyID of surveySchema, fieldName of surveySchema, currentData of the user from surveyResponseSchema array, dynamic field to update at surveyResponseSchema, the data(comment) to be saved
     const updatedSurveyModel = await updateSurveyForSurveyModel(

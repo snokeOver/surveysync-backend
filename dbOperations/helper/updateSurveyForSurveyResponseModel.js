@@ -24,6 +24,16 @@ export const updateSurveyForSurveyResponseModel = async (
     newData = currentData === "DISLIKE" ? "" : "DISLIKE";
   }
 
+  // Logic for Report Status (Reported/NotReported)
+  if (fieldName === "reportCount") {
+    newData =
+      currentData === "" || null
+        ? "Reported"
+        : currentData === "NotReported"
+        ? "Reported"
+        : "NotReported";
+  }
+
   // Logic for comment
   if (fieldName === "commentCount") {
     newData = payloadData;
@@ -35,10 +45,10 @@ export const updateSurveyForSurveyResponseModel = async (
 
   // Now update the exact field with the new Value
   const updatedResponse = await SurveyResponseModel.findOneAndUpdate(
-    { _id: targetId, "userResponses.userId": userId },
+    { _id: targetId, "userResponses.userId": userId }, //Define which object of array to target
     { $set: updateQuery },
     { new: true }
   );
-
+  // console.log(updatedResponse);
   return updatedResponse;
 };
