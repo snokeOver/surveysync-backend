@@ -71,7 +71,7 @@ export const updateSurveyForSurveyModel = async (
 
   // Logic for comment
   if (fieldName === "commentCount") {
-    if (currentData === null && payloadData !== null) {
+    if (!currentData && payloadData !== null) {
       // User didn't comment on this survey yet
       newData = { $inc: { commentCount: 1 } };
     } else if (payloadData === null) {
