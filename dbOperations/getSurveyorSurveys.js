@@ -3,12 +3,12 @@ import errorHandler from "./helper/errorHandler.js";
 
 export const getSurveyorsSurveys = async (req, res, next) => {
   try {
-    const surveys = await SurveyModel.find({
+    const response = await SurveyModel.find({
       surveyorId: req.params.sid,
     });
     res.status(200).send({
       message: "Surveys retrieved successfully!",
-      surveys,
+      response,
     });
   } catch (err) {
     errorHandler(err, res);

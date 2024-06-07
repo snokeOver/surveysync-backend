@@ -17,6 +17,7 @@ import { getAllUsers } from "../dbOperations/getAllUsers.js";
 import { updateAUserRole } from "../dbOperations/updateAUserRole.js";
 import { getAllSurveys } from "../dbOperations/getAllSurveys.js";
 import { updateASurveyStatus } from "../dbOperations/updateASurveyStatus.js";
+import { getAdminFeedbacks } from "../dbOperations/getAdminFeedbacks.js";
 // import { updateExistingDoc } from "../dbOperations/updateExistingDoc.js";
 
 // Initiate router
@@ -27,28 +28,31 @@ const router = express.Router();
 router.get("/test", test);
 
 // Get all the surveys that created by a specific surveyor
-router.get("/surveys/:sid", getSurveyorsSurveys);
+router.get("/surveyor-surveys/:sid", getSurveyorsSurveys);
 
 // Get 6 recently published surveys
-router.get("/recent-surveys", getRecentSurveys);
+router.get("/recent-surveys/:uid", getRecentSurveys);
 
 // Get a  survey response based on the id
-router.get("/survey-response/:id", getATotalSurveyResponse);
+router.get("/survey-response/:uid", getATotalSurveyResponse);
 
 // Get a survey details from surveyModel based on the id
-router.get("/single-survey/:id", getASurveyDetails);
+router.get("/single-survey/:uid", getASurveyDetails);
 
 // Get a  survey details from surveyResponseModel based on the id
-router.get("/user-survey-response/:id", getASurveyResponseDetails);
+router.get("/user-survey-response/:uid", getASurveyResponseDetails);
 
 // Get a  user role
 router.get("/user-role/:id", getUserRole);
 
+// Get admin feedbacks of a particular surveyor
+router.get("/admin-feedbacks/:uid", getAdminFeedbacks);
+
 // Get all users
-router.get("/all-users", getAllUsers);
+router.get("/all-users/:uid", getAllUsers);
 
 // Get all Surveys
-router.get("/all-surveys", getAllSurveys);
+router.get("/all-surveys/:uid", getAllSurveys);
 
 // ------Danger---- Update field in existing database
 // router.get("/update", updateExistingDoc);
