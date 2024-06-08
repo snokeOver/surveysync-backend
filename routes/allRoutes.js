@@ -21,6 +21,9 @@ import { getAdminFeedbacks } from "../dbOperations/getAdminFeedbacks.js";
 import { getUsersParticipatedResponses } from "../dbOperations/getUsersParticipatedResponses.js";
 import { getUsersReportedSurveys } from "../dbOperations/getUsersReportedSurveys.js";
 import { getUsersCommentedSurveys } from "../dbOperations/getUsersCommentedSurveys.js";
+import { getFeaturedSurveys } from "../dbOperations/getFeaturedSurveys.js";
+import { getFAQData } from "../dbOperations/getFAQData.js";
+import { getHowItWorksData } from "../dbOperations/getHowItWorksData.js";
 
 // import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
@@ -36,6 +39,15 @@ router.get("/surveyor-surveys/:sid", getSurveyorsSurveys);
 
 // Get 6 recently published surveys
 router.get("/recent-surveys", getRecentSurveys);
+
+// Get 6 most participated published surveys
+router.get("/featured-surveys", getFeaturedSurveys);
+
+// Get FAQ  public data
+router.get("/faq-data", getFAQData);
+
+// Get how it works public data
+router.get("/how-it-works", getHowItWorksData);
 
 // Get a  survey response based on the surveyId
 router.get("/survey-response/:uid", getATotalSurveyResponse);
