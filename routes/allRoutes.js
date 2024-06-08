@@ -15,7 +15,7 @@ import { getUserRole } from "../dbOperations/getUserRole.js";
 import { getATotalSurveyResponse } from "../dbOperations/getATotalSurveyResponse.js";
 import { getAllUsers } from "../dbOperations/getAllUsers.js";
 import { updateAUserRole } from "../dbOperations/updateAUserRole.js";
-import { getAllSurveys } from "../dbOperations/getAllSurveys.js";
+import { getAllValidSurveys } from "../dbOperations/getAllValidSurveys.js";
 import { updateASurveyStatus } from "../dbOperations/updateASurveyStatus.js";
 import { getAdminFeedbacks } from "../dbOperations/getAdminFeedbacks.js";
 import { getUsersParticipatedResponses } from "../dbOperations/getUsersParticipatedResponses.js";
@@ -24,6 +24,7 @@ import { getUsersCommentedSurveys } from "../dbOperations/getUsersCommentedSurve
 import { getFeaturedSurveys } from "../dbOperations/getFeaturedSurveys.js";
 import { getFAQData } from "../dbOperations/getFAQData.js";
 import { getHowItWorksData } from "../dbOperations/getHowItWorksData.js";
+import { getAllSurveysForAdmin } from "../dbOperations/getAllSurveysForAdmin.js";
 
 // import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
@@ -76,8 +77,11 @@ router.get("/admin-feedbacks/:uid", getAdminFeedbacks);
 // Get all users
 router.get("/all-users/:uid", getAllUsers);
 
-// Get all Surveys
-router.get("/all-surveys/:uid", getAllSurveys);
+// Get all Surveys for admin
+router.get("/all-surveys/:uid", getAllSurveysForAdmin);
+
+// Get all valid(Published) surveys for Survey page
+router.get("/surveys", getAllValidSurveys);
 
 // ------Danger---- Update field in existing database ---------------//
 // router.get("/update", updateExistingDoc);

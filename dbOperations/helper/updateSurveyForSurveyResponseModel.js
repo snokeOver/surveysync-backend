@@ -27,9 +27,7 @@ export const updateSurveyForSurveyResponseModel = async (
   // Logic for Report Status (Reported/NotReported)
   if (fieldName === "reportCount") {
     newData =
-      currentData === "" || null
-        ? "Reported"
-        : currentData === "NotReported"
+      !currentData || currentData === "NotReported"
         ? "Reported"
         : "NotReported";
   }
