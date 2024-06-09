@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: "User",
   },
+  userRequest: {
+    type: String,
+    default: "",
+  },
   userId: {
     type: String,
     unique: true,

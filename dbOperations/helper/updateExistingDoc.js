@@ -1,13 +1,14 @@
 import SurveyModel from "../../shcemas/surveySchema.js";
+import UserModel from "../../shcemas/userSchema.js";
 import errorHandler from "./errorHandler.js";
 
 export const updateExistingDoc = async (req, res, next) => {
   const newField = {
-    reportCount: 0,
+    userRequest: "",
   };
 
   try {
-    const result = await SurveyModel.updateMany({}, { $set: newField });
+    const result = await UserModel.updateMany({}, { $set: newField });
 
     res.status(200).send({
       message: "All Document Updated successfully!",

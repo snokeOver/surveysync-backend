@@ -11,6 +11,7 @@ export const getUsersParticipatedResponses = async (req, res, next) => {
       {
         $match: {
           "userResponses.userId": targetId,
+          "userResponses.vote": { $in: ["YES", "NO"] },
         },
       },
       {

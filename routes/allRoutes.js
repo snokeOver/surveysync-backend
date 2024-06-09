@@ -25,6 +25,7 @@ import { getFeaturedSurveys } from "../dbOperations/getFeaturedSurveys.js";
 import { getFAQData } from "../dbOperations/getFAQData.js";
 import { getHowItWorksData } from "../dbOperations/getHowItWorksData.js";
 import { getAllSurveysForAdmin } from "../dbOperations/getAllSurveysForAdmin.js";
+import { updateAUserRequestByUser } from "../dbOperations/updateAUserRequestByUser.js";
 
 // import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
@@ -106,6 +107,9 @@ router.delete("/survey/:id", deleteASurvey);
 // --------------------  Update(patch) Operations-------------------//
 // Update a specific survey data by id requested by surveyor
 router.patch("/survey/:id", updateASurvey);
+
+// Update a specific userRequest to be Surveyor on userModel
+router.patch("/user-request/:uid", updateAUserRequestByUser);
 
 // Update a specific user role on userModel
 router.patch("/update-user-role/:id", updateAUserRole);
