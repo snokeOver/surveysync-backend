@@ -41,5 +41,3 @@
 - **_jsonwebtoken_**: Tool for generating secure authentication tokens for authorization of user
 
 - **_Stripe_**: Payment processing system integrated to handle secure transactions for pro-user memberships and other payment-related functionalities.
-
-<h2>Technologies Used</h2>
