@@ -5,7 +5,7 @@ const userPaymentSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     unique: true,
     required: true,
-    ref: "allusers", //Reference to the "allusers" collection exactly as in the schema
+    ref: "allUsers", //Reference to the "allUsers" collection exactly as in the schema
   },
 
   paidAmount: {
