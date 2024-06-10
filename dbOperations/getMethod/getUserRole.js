@@ -1,5 +1,5 @@
-import UserModel from "../shcemas/userSchema.js";
-import errorHandler from "./helper/errorHandler.js";
+import UserModel from "../../shcemas/userSchema.js";
+import errorHandler from "../helper/errorHandler.js";
 
 export const getUserRole = async (req, res, next) => {
   try {

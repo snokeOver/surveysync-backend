@@ -1,31 +1,34 @@
 import express from "express";
 import { test } from "../dbOperations/helper/test.js";
-import { createUser } from "../dbOperations/createUser.js";
+import { createUser } from "../dbOperations/postMethods/createUser.js";
 import { checkEamilExist } from "../dbOperations/checkEmailExists.js";
 import { createToken } from "../dbOperations/authentication/createToken.js";
-import { createSurvey } from "../dbOperations/createASurvey.js";
-import { getSurveyorsSurveys } from "../dbOperations/getSurveyorSurveys.js";
-import { deleteASurvey } from "../dbOperations/deleteSurvey.js";
-import { updateASurvey } from "../dbOperations/updateASurvey.js";
-import { getRecentSurveys } from "../dbOperations/getRecentSurveys.js";
-import { getASurveyDetails } from "../dbOperations/getASurveyDetails.js";
-import { updateASurveyResponse } from "../dbOperations/updateASurveyResponse.js";
-import { getASurveyResponseDetails } from "../dbOperations/getASurveyResponseDetails.js";
-import { getUserRole } from "../dbOperations/getUserRole.js";
-import { getATotalSurveyResponse } from "../dbOperations/getATotalSurveyResponse.js";
-import { getAllUsers } from "../dbOperations/getAllUsers.js";
-import { updateAUserRole } from "../dbOperations/updateAUserRole.js";
-import { getAllValidSurveys } from "../dbOperations/getAllValidSurveys.js";
-import { updateASurveyStatus } from "../dbOperations/updateASurveyStatus.js";
-import { getAdminFeedbacks } from "../dbOperations/getAdminFeedbacks.js";
-import { getUsersParticipatedResponses } from "../dbOperations/getUsersParticipatedResponses.js";
-import { getUsersReportedSurveys } from "../dbOperations/getUsersReportedSurveys.js";
-import { getUsersCommentedSurveys } from "../dbOperations/getUsersCommentedSurveys.js";
-import { getFeaturedSurveys } from "../dbOperations/getFeaturedSurveys.js";
-import { getFAQData } from "../dbOperations/getFAQData.js";
-import { getHowItWorksData } from "../dbOperations/getHowItWorksData.js";
-import { getAllSurveysForAdmin } from "../dbOperations/getAllSurveysForAdmin.js";
-import { updateAUserRequestByUser } from "../dbOperations/updateAUserRequestByUser.js";
+import { createSurvey } from "../dbOperations/postMethods/createASurvey.js";
+import { getSurveyorsSurveys } from "../dbOperations/getMethod/getSurveyorSurveys.js";
+import { deleteASurvey } from "../dbOperations/deleteMethod/deleteSurvey.js";
+import { updateASurvey } from "../dbOperations/updateMethods/updateASurvey.js";
+import { getRecentSurveys } from "../dbOperations/getMethod/getRecentSurveys.js";
+import { getASurveyDetails } from "../dbOperations/getMethod/getASurveyDetails.js";
+import { updateASurveyResponse } from "../dbOperations/updateMethods/updateASurveyResponse.js";
+import { getASurveyResponseDetails } from "../dbOperations/getMethod/getASurveyResponseDetails.js";
+import { getUserRole } from "../dbOperations/getMethod/getUserRole.js";
+import { getATotalSurveyResponse } from "../dbOperations/getMethod/getATotalSurveyResponse.js";
+import { getAllUsers } from "../dbOperations/getMethod/getAllUsers.js";
+import { updateAUserRole } from "../dbOperations/updateMethods/updateAUserRole.js";
+import { getAllValidSurveys } from "../dbOperations/getMethod/getAllValidSurveys.js";
+import { updateASurveyStatus } from "../dbOperations/updateMethods/updateASurveyStatus.js";
+
+import { getUsersParticipatedResponses } from "../dbOperations/getMethod/getUsersParticipatedResponses.js";
+import { getUsersReportedSurveys } from "../dbOperations/getMethod/getUsersReportedSurveys.js";
+import { getUsersCommentedSurveys } from "../dbOperations/getMethod/getUsersCommentedSurveys.js";
+import { getFeaturedSurveys } from "../dbOperations/getMethod/getFeaturedSurveys.js";
+import { getFAQData } from "../dbOperations/getMethod/getFAQData.js";
+import { getHowItWorksData } from "../dbOperations/getMethod/getHowItWorksData.js";
+import { getAllSurveysForAdmin } from "../dbOperations/getMethod/getAllSurveysForAdmin.js";
+import { updateAUserRequestByUser } from "../dbOperations/updateMethods/updateAUserRequestByUser.js";
+import { createAPaymentIntent } from "../dbOperations/postMethods/createAPaymentIntent.js";
+import { getAdminFeedbacks } from "../dbOperations/getMethod/getAdminFeedbacks.js";
+import { createPymentDetails } from "../dbOperations/postMethods/createPymentDetails.js";
 
 // import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
@@ -99,6 +102,12 @@ router.post("/jwt", createToken);
 
 // Create a survey
 router.post("/create-survey", createSurvey);
+
+// Create a Payment Intent
+router.post("/create-payment-intent", createAPaymentIntent);
+
+// Create a Payment details on successful payment
+router.post("/create-payment-details", createPymentDetails);
 
 // --------------------  Delete Operations-------------------------//
 // Delete a specific survey data by id requested by surveyor

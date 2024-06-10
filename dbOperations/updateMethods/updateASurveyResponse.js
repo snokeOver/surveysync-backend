@@ -1,6 +1,6 @@
-import SurveyResponseModel from "../shcemas/surveyResponseSchema.js";
-import { updateBothSurveyModel } from "./helper/UpdateBothSurveyModel.js";
-import errorHandler from "./helper/errorHandler.js";
+import SurveyResponseModel from "../../shcemas/surveyResponseSchema.js";
+import { updateBothSurveyModel } from "../helper/UpdateBothSurveyModel.js";
+import errorHandler from "../helper/errorHandler.js";
 
 export const updateASurveyResponse = async (req, res, next) => {
   const payload = {

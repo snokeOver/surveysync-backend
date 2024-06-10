@@ -1,6 +1,6 @@
-import AdminFeedbackModel from "../shcemas/adminFeedbackSchema.js";
-import SurveyModel from "../shcemas/surveySchema.js";
-import errorHandler from "./helper/errorHandler.js";
+import AdminFeedbackModel from "../../shcemas/adminFeedbackSchema.js";
+import SurveyModel from "../../shcemas/surveySchema.js";
+import errorHandler from "../helper/errorHandler.js";
 import mongoose from "mongoose";
 
 export const updateASurveyStatus = async (req, res, next) => {

@@ -1,5 +1,5 @@
-import SurveyModel from "../shcemas/surveySchema.js";
-import errorHandler from "./errorHandler.js";
+import SurveyModel from "../../shcemas/surveySchema.js";
+import errorHandler from "../helper/errorHandler.js";
 
 export const getASurveyResponse = async (req, res, next) => {
   try {

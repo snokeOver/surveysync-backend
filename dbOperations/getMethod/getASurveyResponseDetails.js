@@ -1,6 +1,5 @@
-import errorHandler from "./helper/errorHandler.js";
-
-import { findASpecificUserResponse } from "./helper/findASpecificUserResponse.js";
+import errorHandler from "../helper/errorHandler.js";
+import { findASpecificUserResponse } from "../helper/findASpecificUserResponse.js";
 
 export const getASurveyResponseDetails = async (req, res, next) => {
   try {

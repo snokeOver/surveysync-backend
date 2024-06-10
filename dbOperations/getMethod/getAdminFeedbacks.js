@@ -1,5 +1,5 @@
-import AdminFeedbackModel from "../shcemas/adminFeedbackSchema.js";
-import errorHandler from "./helper/errorHandler.js";
+import AdminFeedbackModel from "../../shcemas/adminFeedbackSchema.js";
+import errorHandler from "../helper/errorHandler.js";
 
 export const getAdminFeedbacks = async (req, res, next) => {
   try {

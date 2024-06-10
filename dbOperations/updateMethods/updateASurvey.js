@@ -1,5 +1,5 @@
-import SurveyModel from "../shcemas/surveySchema.js";
-import errorHandler from "./helper/errorHandler.js";
+import SurveyModel from "../../shcemas/surveySchema.js";
+import errorHandler from "../helper/errorHandler.js";
 
 export const updateASurvey = async (req, res, next) => {
   const { title, description, deadline, category } = req.body;

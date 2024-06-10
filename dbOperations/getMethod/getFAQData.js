@@ -1,5 +1,5 @@
-import FAQModel from "../shcemas/faqSchema.js";
-import errorHandler from "./helper/errorHandler.js";
+import FAQModel from "../../shcemas/faqSchema.js";
+import errorHandler from "../helper/errorHandler.js";
 
 export const getFAQData = async (req, res, next) => {
   try {

@@ -1,9 +1,9 @@
-import SurveyResponseModel from "../shcemas/surveyResponseSchema.js";
-import SurveyModel from "../shcemas/surveySchema.js";
-import errorHandler from "./helper/errorHandler.js";
-import { findASpecificUserResponse } from "./helper/findASpecificUserResponse.js";
-import { updateSurveyForSurveyModel } from "./helper/updateSurveyForSurveyModel.js";
-import { updateSurveyForSurveyResponseModel } from "./helper/updateSurveyForSurveyResponseModel.js";
+import SurveyResponseModel from "../../shcemas/surveyResponseSchema.js";
+import SurveyModel from "../../shcemas/surveySchema.js";
+import errorHandler from "../helper/errorHandler.js";
+import { findASpecificUserResponse } from "../helper/findASpecificUserResponse.js";
+import { updateSurveyForSurveyModel } from "../helper/updateSurveyForSurveyModel.js";
+import { updateSurveyForSurveyResponseModel } from "../helper/updateSurveyForSurveyResponseModel.js";
 
 export const updateASurveyResponse = async (req, res, next) => {
   const payload = {

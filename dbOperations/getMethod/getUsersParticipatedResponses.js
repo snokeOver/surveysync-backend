@@ -1,7 +1,7 @@
-import SurveyResponseModel from "../shcemas/surveyResponseSchema.js";
-import errorHandler from "./helper/errorHandler.js";
+import SurveyResponseModel from "../../shcemas/surveyResponseSchema.js";
+import errorHandler from "../helper/errorHandler.js";
 
-export const getUsersReportedSurveys = async (req, res, next) => {
+export const getUsersParticipatedResponses = async (req, res, next) => {
   const targetId = req.params.uid;
   try {
     const response = await SurveyResponseModel.aggregate([
@@ -11,7 +11,7 @@ export const getUsersReportedSurveys = async (req, res, next) => {
       {
         $match: {
           "userResponses.userId": targetId,
-          "userResponses.reportStatus": "Reported",
+          "userResponses.vote": { $in: ["YES", "NO"] },
         },
       },
       {
