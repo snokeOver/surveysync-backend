@@ -7,7 +7,7 @@ export const verifySurveyorOrProUser = async (req, res, next) => {
       userId: req.decoded.uid,
     });
     if (foundUser.userRole !== "Surveyor" && foundUser.userRole !== "ProUser") {
-      console.log("Found user:", foundUser.userRole);
+      // console.log("Found user:", foundUser.userRole);
       return res.status(403).send({ message: "Forbidden Access" });
     } else {
       next();

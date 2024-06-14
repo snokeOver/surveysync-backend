@@ -35,6 +35,8 @@ import { verifyAdmin } from "../dbOperations/authentication/verifyAdmin.js";
 import { verifySurveyor } from "../dbOperations/authentication/verifySurveyor.js";
 import { verifyProUser } from "../dbOperations/authentication/verifyProUser.js";
 import { verifySurveyorOrProUser } from "../dbOperations/authentication/verifySurveyorOrProUser.js";
+import { getUsersResponedSurveys } from "../dbOperations/getMethod/getUsersResponedSurveys.js";
+import { verifySurveyorOrAdmin } from "../dbOperations/authentication/verifySurveyorOrAdmin.js";
 
 // import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
@@ -49,7 +51,7 @@ router.get("/test", test);
 router.get(
   "/surveyor-surveys/:sid",
   verifyToken,
-  verifySurveyorOrProUser,
+  verifySurveyor,
   getSurveyorsSurveys
 );
 
@@ -65,11 +67,11 @@ router.get("/faq-data", getFAQData);
 // Get how it works public data [Home page data]
 router.get("/how-it-works", getHowItWorksData);
 
-// Get a  survey response based on the surveyId [Surveyor data]
+// Get a  survey response based on the surveyId [Surveyor || Admin access]
 router.get(
   "/survey-response/:uid",
   verifyToken,
-  verifySurveyorOrProUser,
+  verifySurveyorOrAdmin,
   getATotalSurveyResponse
 );
 
@@ -82,6 +84,14 @@ router.get(
 
 // Get a  surveys I reported [logged in normal user data]
 router.get("/reported-surveys/:uid", verifyToken, getUsersReportedSurveys);
+
+// Get those  surveys have response [Admin only access]
+router.get(
+  "/responded-surveys/:uid",
+  verifyToken,
+  verifyAdmin,
+  getUsersResponedSurveys
+);
 
 // Get  surveys on those I Commented [Pro user data]
 router.get(
@@ -108,7 +118,7 @@ router.get(
 router.get(
   "/admin-feedbacks/:uid",
   verifyToken,
-  verifySurveyorOrProUser,
+  verifySurveyor,
   getAdminFeedbacks
 );
 
@@ -143,12 +153,7 @@ router.post("/create-user", createUser);
 router.post("/jwt", createToken);
 
 // Create a survey   [Surveyor only data]
-router.post(
-  "/create-survey",
-  verifyToken,
-  verifySurveyorOrProUser,
-  createSurvey
-);
+router.post("/create-survey", verifyToken, verifySurveyor, createSurvey);
 
 // Create a Payment Intent [Logged in user operation]
 router.post("/create-payment-intent", verifyToken, createAPaymentIntent);
@@ -157,22 +162,12 @@ router.post("/create-payment-intent", verifyToken, createAPaymentIntent);
 router.post("/create-payment-details", verifyToken, createPymentDetails);
 
 // --------------------  Delete Operations-------------------------//
-// Delete a specific survey data by id requested by surveyor
-router.delete(
-  "/survey/:id",
-  verifyToken,
-  verifySurveyorOrProUser,
-  deleteASurvey
-);
+// Delete a specific survey data by id requested by surveyor [Surveyor only access]
+router.delete("/survey/:id", verifyToken, verifySurveyor, deleteASurvey);
 
 // --------------------  Update(patch) Operations-------------------//
 // Update a specific survey data by id requested by surveyor [surveyor only data]
-router.patch(
-  "/survey/:id",
-  verifyToken,
-  verifySurveyorOrProUser,
-  updateASurvey
-);
+router.patch("/survey/:id", verifyToken, verifySurveyor, updateASurvey);
 
 // Update a specific userRequest to be Surveyor on userModel [logged in user access]
 router.patch("/user-request/:uid", verifyToken, updateAUserRequestByUser);
@@ -193,12 +188,7 @@ router.patch(
   updateASurveyStatus
 );
 
-// Update a specific survey response data on both SurveyModel and SurveyResponseModel  [Surveyor only data]
-router.patch(
-  "/survey-response/:id",
-  verifyToken,
-  verifySurveyorOrProUser,
-  updateASurveyResponse
-);
+// Update a specific survey response data on both SurveyModel and SurveyResponseModel  [user data to update data like: Make Report]
+router.patch("/survey-response/:id", verifyToken, updateASurveyResponse);
 
 export default router;

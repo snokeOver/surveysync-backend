@@ -15,14 +15,16 @@ export const createUser = async (req, res, next) => {
       $or: [{ userId: userToSave.userId }, { email: userToSave.email }],
     });
 
+    let savedUser;
     // Save new user
     if (!existingUser) {
       const user = new UserModel(userToSave);
-      const savedUser = await user.save();
+      savedUser = await user.save();
     }
 
     res.status(200).send({
       message: "User created successfully!",
+      savedUser,
     });
   } catch (err) {
     errorHandler(err, res);

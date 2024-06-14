@@ -40,7 +40,7 @@ export const updateASurveyResponse = async (req, res, next) => {
         { $push: { userResponses: userInfoForUpdate } },
         { new: true } // This ensures the updated document is returned
       );
-      console.log(newResponse);
+      // console.log(newResponse);
       // Update SurveyModel Part
       const survey = await SurveyModel.findByIdAndUpdate(
         req.params.id,
@@ -58,7 +58,7 @@ export const updateASurveyResponse = async (req, res, next) => {
           surveyResponse.vote
         );
 
-      console.log(updatedSurveyResponseModel);
+      // console.log(updatedSurveyResponseModel);
 
       // update Opearation on data from surveyModel
       const updatedSurveyModel = await updateSurveyForSurveyModel(
