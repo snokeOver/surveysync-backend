@@ -37,6 +37,7 @@ import { verifyProUser } from "../dbOperations/authentication/verifyProUser.js";
 import { verifySurveyorOrProUser } from "../dbOperations/authentication/verifySurveyorOrProUser.js";
 import { getUsersResponedSurveys } from "../dbOperations/getMethod/getUsersResponedSurveys.js";
 import { verifySurveyorOrAdmin } from "../dbOperations/authentication/verifySurveyorOrAdmin.js";
+import { getUserStatistics } from "../dbOperations/getMethod/getUserStatistics.js";
 
 // import { updateExistingDoc } from "../dbOperations/helper/updateExistingDoc.js";
 
@@ -135,6 +136,10 @@ router.get(
   verifyAdmin,
   getAllSurveysForAdmin
 );
+
+// Get users dashoard statistics
+// router.get("/user-statistics", verifyToken, getUserStatistics);
+router.get("/user-statistics/:id", getUserStatistics);
 
 // Get all valid(Published) surveys for Survey page [public survey-page data]
 router.get("/surveys", getAllValidSurveys);
